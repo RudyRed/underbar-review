@@ -392,13 +392,13 @@
     describe('memoize', function() {
       var add, memoAdd;
 
-      beforeEach(function() {
+      //beforeEach(function() {
         add = function(a, b) {
           return a + b;
         };
 
         memoAdd = _.memoize(add);
-      });
+     // });
 
 
       it('should produce the same result as the non-memoized version', function() {

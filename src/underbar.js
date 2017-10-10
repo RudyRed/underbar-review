@@ -319,15 +319,20 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
+
+
   _.memoize = function(func) {
     var storage = {};
-    var key = JSON.stringify(arguments);
-    if (storage[key]) {
-      return storage[key];
-    } else {
-      storage[key] = func.apply(this, arguments);
-      return storage[key];
-    }
+    return function(val) {
+      var key = JSON.stringify(arguments);// { '5, 2': 7, '5, 6':11 }
+      if (storage[key]) {
+        return storage[key];
+      } else {  
+        var value = func.apply(this, arguments);
+        storage[key] = value;
+        return value; 
+      }
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
